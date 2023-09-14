@@ -1,33 +1,46 @@
-﻿
+﻿using System.CodeDom.Compiler;
+using System.Collections.Generic;
+using System.Collections;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
+using System.Text;
+using System;
 
 class Result
 {
-    public static List<int> CompareTriplets(List<int> a, List<int> b)
+    public static int diagonalDifference(List<List<int>> arr)
     {
-        int x = 0, y = 0;
-        List<int> result = new List<int>();
-        for (int i = 0; i < 3; i++)
+        //string a = "0", b = "0";
+        
+        int a = 0,b=0;
+        int n= arr.ToArray().Length;
+        Console.WriteLine(n);
+        for (int i = 0; i < n; i++)
         {
-            if (a[i] > b[i])
+            for (int j = 0; j < n; j++)
             {
-                x++;
+                if (i == j)
+                {
+                    //Console.WriteLine(arr[i][j]);
+                    a = a + arr[i][j];
+                }
+                
+                if (i + j == n - 1)
+                {
+                    //Console.WriteLine(arr[i][j]);
+                    b = b + arr[i][j];
+                }
             }
-            if (a[i] < b[i])
-            {
-                y++;
-            }
-            if (a[i] == b[i])
-            {
-                continue;
-            }
-         
-
         }
-        result.Add(x);
-        result.Add(y);
-        return result;
-        //or
-        //return new List<int> { x, y };
+        
+        int c = Math.Abs(a - b);
+        return c;
     }
 
 }
@@ -37,14 +50,14 @@ class Solution
     public static void Main(string[] args)
     {
 
-        
 
-        List<int> a = new List<int> { 17, 28, 30 };
+        List<List<int>> arr = new List<List<int>>();
+        arr.Add(new List<int> { 1, 2, 3 });
+        arr.Add(new List<int> { 4, 5, 6 });
+        arr.Add(new List<int> { 9, 8, -9 });
+        int result = Result.diagonalDifference(arr);
 
-        List<int> b = new List<int> { 99, 16, 8 };
 
-        List<int> result = Result.CompareTriplets(a, b);
-        Console.WriteLine(String.Join(" ", result));
-
+        Console.WriteLine(result);
     }
 }
