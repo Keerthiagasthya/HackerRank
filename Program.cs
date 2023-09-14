@@ -1,0 +1,50 @@
+﻿
+
+class Result
+{
+    public static List<int> CompareTriplets(List<int> a, List<int> b)
+    {
+        int x = 0, y = 0;
+        List<int> result = new List<int>();
+        for (int i = 0; i < 3; i++)
+        {
+            if (a[i] > b[i])
+            {
+                x++;
+            }
+            if (a[i] < b[i])
+            {
+                y++;
+            }
+            if (a[i] == b[i])
+            {
+                continue;
+            }
+         
+
+        }
+        result.Add(x);
+        result.Add(y);
+        return result;
+        //or
+        //return new List<int> { x, y };
+    }
+
+}
+
+class Solution
+{
+    public static void Main(string[] args)
+    {
+
+        
+
+        List<int> a = new List<int> { 17, 28, 30 };
+
+        List<int> b = new List<int> { 99, 16, 8 };
+
+        List<int> result = Result.CompareTriplets(a, b);
+        Console.WriteLine(String.Join(" ", result));
+
+    }
+}
